@@ -1,6 +1,6 @@
-a=float(input('первый член: '))
+a1=float(input('первый член: '))
 b=int(input('количество членов: '))
-c=float(input('знаменатель '))
+c=float(input('знаменатель: '))
 
 for a in range(1,b,1):
-    print(a*c**a, end='')
+    print(a1*c**(a), end='')
