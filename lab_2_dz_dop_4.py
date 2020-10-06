@@ -1,15 +1,15 @@
 n = int(input('введите натуральное число: '))
 while n > 1:
-    i = 2
-    f = 0
+    a = 2
+    b = 0
     while 1:
-        if n%i == 0:
-            n = n // i
-            print(i, end=' ')
-            f = 1
+        if n%a == 0:
+            n = n // a
+            print(a, end=' ')
+            b = 1
             break
         else:
-            i += 1
-    if f == 1:
+            a += 1
+    if b == 1:
         continue
 print( )
