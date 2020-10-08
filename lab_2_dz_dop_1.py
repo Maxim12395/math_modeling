@@ -5,7 +5,7 @@ c = float(input("c = "))
  
 discr = b**2 - 4 * a * c;
 print("Дискриминант D = %.2f" % discr)
-if discr > 0:
+if discr > a != 0:
         import math
         x1 = (-b + math.sqrt(discr)) / (2*a)
         x2 = (-b - math.sqrt(discr)) / (2*a)
