@@ -21,4 +21,6 @@ E2 = (((q2*(x - 1))/(sqrt(((x-1)**2) + ((y - 1)**2) + ((z - 1)**2)))**2)**3)*N.i
 E = E1 + E2
 E_new = E.subs([(x, 3), (y, 4), (z, 5)])
 
-print(E_new)
+print(E_new.evalf())
+
+print(sqrt(E_new.dot(E_new)).evalf())
