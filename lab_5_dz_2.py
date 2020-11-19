@@ -14,4 +14,4 @@ a = symbols("a")
 
 simp_expr2 = simplify(sqrt((1 + sin(a))/(1 - sin(a))) + (sqrt(1 - sin(a))/(1 + sin(a))))
 
-
+print(simp_expr2)
