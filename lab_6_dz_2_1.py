@@ -1,18 +1,20 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def parabola_platter(a  = 1, b = 2, c = 5, title="parabola platter"):
-    
-    xa = np.arange(int(input("введите число: ")))
-    xb = np.arange(int(input("введите число: ")))
-    y = a*(xa.xb)**2 + b*(xa.xb) + c
 
-    plt.plot(xa,xb,y,label="my parabola")
-    plt.xalabel("coord - xa")
-    plt.xblabel("coord - xb")
-    plt.title(title)
+def parabola_platter(a  = 1, b = 2, c = 5, xa =-10, xb = 10):
+    
+    x = np.arange(xa,xb,1)
+    y = a*x**2 + b*x + c
+    
+
+    plt.plot(x,y,label="my parabola")
+    plt.xlabel("coord - x")
+    plt.ylabel("coord - y")
     plt.legend()
     plt.savefig('pic1.png')
     #plt.show()
     
-parabola_platter()
+parabola_platter(1,2,3)
+
+
