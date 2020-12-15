@@ -1,15 +1,15 @@
 import matplotlib.pyplot as plt
+from math import sqrt, cos, sin
 import numpy as np
 
 
 def astroid(r):
-    x=[]
-    y=[]
-    for t in range (1,1000):
-        x.append((r*np.sin(t))**3)
-        y.append((r*np.cos(t))**3)
 
-    plt.scatter(x,y)
+    t = np.linspace(-2*np.pi, 6*np.pi, 100)
+    x = (r*np.sin(t)**3)
+    y = (r*np.cos(t)**3)
+    plt.axis("equal")
+    plt.plot(x,y)
     plt.show()
     
 astroid(3)
