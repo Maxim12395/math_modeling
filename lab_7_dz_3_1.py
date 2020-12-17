@@ -1,21 +1,29 @@
-import matplotlib.pyplot as plt
-from math import sqrt, cos, sin, pi
 import numpy as np
+import matplotlib.pyplot as plt
+from math import sqrt, cos, sin, pi, exp
+from matplotlib.animation import FuncAnimation
 
-def babochka(e):
-    t = np.linspace(-2*np.pi, 6*np.pi, 100)
-    # x = (np.sin*(t)*((e**(np.cos*(t))) - 2*np.cos*(4*t) + (np.sin**5)*(t/12)))
-    # y = (np.cos*(t)*((e**(np.cos*(t))) - 2*np.cos*(4*t) + (np.sin**5)*(t/12)))
-    
-    for x in (-5 , 5):
-        x = ((np.sin*(t)*(e**(np.cos*(t)))) - (2*np.cos*(4*t)) + ((np.sin**5)*(t/12)))
-    for y in (-5 , 5):
-        y = (np.cos*(t)*((e**(np.cos*(t))) - 2*np.cos*(4*t) + (np.sin**5)*(t/12)))
-    for t in (0 , 12*np.pi):
-        t = np.linspace(-2*np.pi, 6*np.pi, 100)
-        
-        plt.axis("equal")
-        plt.plot(x,y)
-        plt.show()
-    
-babochka(5)
+fig, ax = plt.subplots()
+
+anim_object, = plt.plot([], [], "-", color = "b")
+plt.axis("equal")
+xdata, ydata = [], []
+edge=10
+ax.set_xlim(-edge, edge)
+ax.set_ylim(-edge, edge)
+
+def animate(t):
+    x0 = 0
+    y0 = 0
+    xdata.append(x0 + np.sin(t)*(exp(np.cos(t)) - 2*np.cos(4*t) + np.sin(t/12)**5))
+    ydata.append(y0 + np.cos(t)*(exp(np.cos(t)) - 2*np.cos(4*t) + np.sin(t/12)**5))
+    anim_object.set_data(xdata, ydata)
+    return anim_object
+
+ani=FuncAnimation(fig,
+                  animate,
+                  frames=np.arange(0,25, 0.1),
+                  interval=100 
+                  )
+
+ani.save("lab_7_dz_3.gif")
