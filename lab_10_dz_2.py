@@ -19,8 +19,8 @@ y0 = - 7
 
 v0 = x0, y0 
 
-sol = odeint(second_diff, v0, t)
-plt.plot(t, sol[:, 1], "b", label = "dx_dt")
-plt.plot(t, sol[:, 0], "k", label = "dy_dt")
+sol = odeint(func, v0, x)
+plt.plot(x, sol[:, 1], "b", label = "dx_dt")
+plt.plot(x, sol[:, 0], "k", label = "dy_dt")
 plt.legend()
 plt.shpw()
