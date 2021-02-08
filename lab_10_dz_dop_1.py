@@ -25,8 +25,8 @@ v0 = y0, z0, x0
 sol = odeint(func, v0, x)  
 
 plt.plot(x, sol[:, 1], "b", label = "dy_dt")
-plt.plot(x, sol[:, 0], "b", label = "dz_dt")
-plt.plot(x, sol[:, 2], "b", label = "dx_dt")
+plt.plot(x, sol[:, 0], "r", label = "dz_dt")
+plt.plot(x, sol[:, 2], "k", label = "dx_dt")
 
 plt.legend()
 plt.shpw()    
