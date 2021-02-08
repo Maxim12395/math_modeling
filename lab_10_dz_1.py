@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 
 x = np.arange(-5, 5, 0.01) 
 
-def func(z, x):
+def func(v, x):
     
-    y , x  = z
+    y , z  = v
     
     dy_dx = (y**2) * z
     
@@ -17,11 +17,12 @@ def func(z, x):
 y0 = 1
 z0 = - 3
 
-x0 = y0, z0
+v0 = y0, z0
 
-sol = odeint(func, z0, x)  
+sol = odeint(func, v0, x)  
 
-plt.plot(x, sol[:, 1], "b", label = "y(x)")
+plt.plot(x, sol[:, 1], "b", label = "dy_dx")
+plt.plot(x, sol[:, 0], "b", label = "dz_dx")
 
 plt.legend()
 plt.shpw()    
