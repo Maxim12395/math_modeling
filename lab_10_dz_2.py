@@ -4,23 +4,23 @@ import matplotlib.pyplot as plt
 
 x = np.arange(-1, 1, 0.1) 
 
-def func(z, t):
+def func(v, t):
     
-    x, y = t
+    x, y = v
     
-    dx_dt = 3*x - 2*y + ((np.exp**(3*t)) / (np.exp**t) + 1)
+    dx_dt = 3*x - 2*y + (np.exp(3*t)) / (np.exp(t) + 1)
     
-    dy_dt = x - ((np.exp**(3*t)) / (np.exp**t) + 1)
+    dy_dt = x - (np.exp(3*t)) / (np.exp(t) + 1)
     
     return dx_dt,dy_dt
 
 x0 = 5
 y0 = - 7 
 
-z0 = x0, y0 
+v0 = x0, y0 
 
-sol = odeint(second_diff, z0, x)
-plt.plot(x, sol[:, 1], "b", label = "dx_dt")
-plt.plot(x, sol[:, 0], "k", label = "dy_dt")
+sol = odeint(second_diff, v0, t)
+plt.plot(t, sol[:, 1], "b", label = "dx_dt")
+plt.plot(t, sol[:, 0], "k", label = "dy_dt")
 plt.legend()
 plt.shpw()
