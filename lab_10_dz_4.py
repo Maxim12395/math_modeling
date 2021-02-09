@@ -10,7 +10,7 @@ def diff_func(v, x):
     
     dy_dt = omega
     
-    domega_dt = -4*omega + 5*y
+    domega_dt = -4*omega - 5*y
     
     return dy_dt , domega_dt
 
