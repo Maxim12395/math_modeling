@@ -6,46 +6,58 @@ from matplotlib.animation import FuncAnimation
 frames = 200
 
 t = np.linspace(0, 5, frames)
+x = np.ones(len(t))
 
 def move_func(z, t):
     
-    v, a, dy, dt = z
+    y, v = z
     
     dy_dt = v
     
-    dy_dt = g - M * (dy / dt)
+    dv_dt = - g - M * v
     
-    dy_dt = a
-    
-    return dy_dt
+    return dy_dt, dv_dt
 
 g = 9.8
 
-v0 = 1
+v0 = 20
 
 m = 0.5
 
 M = 0.2
 
-z0 = g, v0, m, M
+y0 = 0
 
+z0 = y0, v0
+
+def solve_func(i, key):
+    
+    sol = odeint(move_func, z0, t)  
+    
+    if key == "point":
+        
+        y = sol[i, 0]
+    else:
+       
+        y = sol[:i, 0]
+    return y
 
 fig, ax = plt.subplots()
 
-ball1, = plt.plot([], [], "o", color = "r")
-
+ball, = plt.plot([], [], "o", color = "r")
+ball_line, = plt.plot([], [], "-", color = "r")
 
 def animate(i):
-    ball1.set_data(solve_func(i, "point"))
+    ball.set_data(x,solve_func(i, "point"))
 
+    
 ani = FuncAnimation(fig,
                     animate,
                     frames = frames,
                     interval = 30)    
 
-edge = 15
+edge = 50
 ax.set_xlim(0, edge)
 ax.set_ylim(0, edge)
 
-plt.legend()
-plt.show()    
+ani.save("laba.gif")
