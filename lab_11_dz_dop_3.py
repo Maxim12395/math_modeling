@@ -1,62 +1,62 @@
 import numpy as np
 from scipy.integrate import odeint
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-
-frames = 200
-
+frames = 100
+G = 9.8
 t = np.linspace(0, 5, frames)
+l0=2.5
+q = 0.45
 
-def move_func(z, t):
-    
-    y, v = z
-    
-    dy_dt = v
-    
-    dx_dt = g * (x / l) - mu * g * (l * x / l)
-    
-    return dy_dt, dx_dt
+def move_1(variable, t):
+    L, x= variable
+    dx_dt = x
+    d2x_dt2 = G*(x/L)-q*((L-x)/L)
+    return  dx_dt, d2x_dt2
+m = 0.5
+x0 = 0.5
 
-g = 9.8
+variable = l0, x0
 
-l = 2.5
+def solve_func(i):
+    sol = odeint(move_1, variable, t)
+    z: int = l0-sol[i, 0]-x0
+    z=-z
+    if z > l0:
+        z = l0
+    x = [z, l0]
+    y = [0, 0]
+    return x, y
+def solve_func_palk(i):
+    sol = odeint(move_1, variable, t)
+    x = [l0,l0]
+    z: int = l0 - sol[i, 0]-x0
+    z = -z
+    if z > l0:
+        z = l0
+    y = [0,-z]
 
-mu = 1
-
-x = 0.5
-
-y0 = 0
-
-z0 = x, y0
-
-def solve_func(i, key):
-    
-    sol = odeint(move_func, z0, t)  
-    
-    if key == "point":
-        
-        y = sol[i, 0]
-    else:
-       
-        y = sol[:i, 0]
-    return y
+    return x, y
 
 fig, ax = plt.subplots()
 
-ball, = plt.plot([], [], "o", color = "r")
-ball_line, = plt.plot([], [], "-", color = "r")
+edge = 6
+plt.axis("equal")
+ax.set_xlim(0, edge)
+ax.set_ylim(-edge-3, edge)
 
+ball, = plt.plot([], [], 'o', color='r')
+palk, = plt.plot([], [], '-', color='b')
+palk1, = plt.plot([], [], '-', color='b')
 def animate(i):
-    ball.set_data(x,solve_func(i, "point"))
+    palk.set_data(solve_func(i))
+    palk1.set_data(solve_func_palk(i))
 
-    
 ani = FuncAnimation(fig,
                     animate,
-                    frames = frames,
-                    interval = 30)    
+                    frames=frames,
+                    interval=30)
 
-edge = 50
-ax.set_xlim(0, edge)
-ax.set_ylim(0, edge)
 
-ani.save("laba.gif")
+
+plt.show()
