@@ -94,10 +94,6 @@ ball_linen, = plt.plot([], [], '-', color='k')
 ballu, = plt.plot([], [], 'o', color='k')
 ball_lineu, = plt.plot([], [], '-', color='k')
 
-plt.plot([0], [0], 'o', color='y', ms=20)
-
-
-
 def animate(i):
     ball.set_data(solve_func(i, 'point')[0])
     ball_line.set_data(solve_func(i, 'line')[0])
